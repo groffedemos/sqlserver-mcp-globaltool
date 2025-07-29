@@ -10,6 +10,7 @@ on:
 env:
   PATH_PROJECT: ./src/MssqlMcp/MssqlMcp.csproj
   NUGET_SERVER: https://api.nuget.org/v3/index.json
+  SQLSERVER_MCP_REPO: https://github.com/Azure-Samples/SQL-AI-samples.git
 
 jobs:
   build:
@@ -23,6 +24,24 @@ jobs:
         with:
           dotnet-version: 8.0.412
 
+      - name: Clonar repositorio com o MCP Server do SQL Server
+        run: git clone ${{ env.SQLSERVER_MCP_REPO }} sql-ai
+
+      - name: Exibir conteudos do repositorio clonado
+        run: |
+          pwd
+          ls -l
+          echo
+          echo
+          cd sql-ai
+          pwd
+          ls -l
+          echo
+          echo
+          cd MssqlMcp/dotnet/MssqlMcp
+          pwd
+          ls -l
+        
       - name: Geração do package
         run: dotnet pack ${{ env.PATH_PROJECT }} -c Release -o out
       
