@@ -45,7 +45,7 @@ jobs:
       - name: Exibir conteudo do arquivo .csproj antes das alteracoes
         run: cat ${{ env.PATH_PROJECT }}
       
-      - name: Exibir conteudo do arquivo .csproj antes das alteracoes
+      - name: Alterar o arquivo .csproj para buildar a aplicacao como uma Global Tool
         run: |
           sed -i "/<\/PropertyGroup>/{
             h
@@ -81,4 +81,5 @@ jobs:
       - name: Push no NuGet
         run: |
           cd out
+          dotnet nuget push *.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ env.NUGET_SERVER }}
 #          dotnet nuget push *.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ env.NUGET_SERVER }} --skip-duplicate
