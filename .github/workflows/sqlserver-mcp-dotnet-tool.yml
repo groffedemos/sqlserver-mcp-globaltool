@@ -1,0 +1,37 @@
+name: sqlserver-mcp-nuget
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+env:
+  PATH_PROJECT: ./src/MssqlMcp/MssqlMcp.csproj
+  NUGET_SERVER: https://api.nuget.org/v3/index.json
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v3.4.2
+        with:
+          dotnet-version: 8.0.412
+
+      - name: Geração do package
+        run: dotnet pack ${{ env.PATH_PROJECT }} -c Release -o out
+      
+      - name: Exibir arquivos gerados apos build
+        run: |
+          cd out
+          ls -l
+  
+      - name: Push no NuGet
+        run: |
+          cd out
+#          dotnet nuget push *.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ env.NUGET_SERVER }} --skip-duplicate
