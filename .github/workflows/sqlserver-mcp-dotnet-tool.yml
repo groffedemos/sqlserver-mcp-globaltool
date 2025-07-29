@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  PATH_PROJECT: ./src/MssqlMcp/MssqlMcp.csproj
+  PATH_PROJECT: ./sql-ai/MssqlMcp/dotnet/MssqlMcp/MssqlMcp.csproj
   NUGET_SERVER: https://api.nuget.org/v3/index.json
   SQLSERVER_MCP_REPO: https://github.com/Azure-Samples/SQL-AI-samples.git
 
