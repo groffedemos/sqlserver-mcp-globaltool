@@ -55,6 +55,7 @@ jobs:
           }" ${{ env.PATH_PROJECT }} <<'EOF'
           
             <PropertyGroup>
+              <AssemblyName>mcpsqlserverteste0</AssemblyName>
               <PackAsTool>true</PackAsTool>
               <ToolCommandName>mcpsqlserver</ToolCommandName>
               <Authors>Renato Groffe</Authors>
