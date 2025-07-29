@@ -41,8 +41,36 @@ jobs:
           cd MssqlMcp/dotnet/MssqlMcp
           pwd
           ls -l
-        
-      - name: Geração do package
+          
+      - name: Exibir conteudo do arquivo .csproj antes das alteracoes
+        run: cat ${{ env.PATH_PROJECT }}
+      
+      - name: Exibir conteudo do arquivo .csproj antes das alteracoes
+        run: |
+          sed -i "/<\/PropertyGroup>/{
+            h
+            r /dev/stdin
+            g
+            n
+          }" YourProject.csproj <<'EOF'
+          
+            <PropertyGroup>
+              <PackAsTool>true</PackAsTool>
+              <ToolCommandName>mcpsqlserver</ToolCommandName>
+              <Authors>Renato Groffe</Authors>
+              <Company>Groffe</Company>
+              <PackageTags>NuGet;.NET;Tool;Sample</PackageTags>
+              <Description>
+                This tool was generated based on the .NET implementation of the SQL Server MCP Server.
+              </Description>
+            </PropertyGroup>
+          
+          EOF
+
+      - name: Exibir conteudo do arquivo .csproj apos as alteracoes
+        run: cat ${{ env.PATH_PROJECT }}
+
+      - name: Geracao do package
         run: dotnet pack ${{ env.PATH_PROJECT }} -c Release -o out
       
       - name: Exibir arquivos gerados apos build
