@@ -52,7 +52,7 @@ jobs:
             r /dev/stdin
             g
             n
-          }" YourProject.csproj <<'EOF'
+          }" ${{ env.PATH_PROJECT }} <<'EOF'
           
             <PropertyGroup>
               <PackAsTool>true</PackAsTool>
