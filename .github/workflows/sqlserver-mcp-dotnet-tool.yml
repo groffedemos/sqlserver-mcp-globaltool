@@ -72,7 +72,7 @@ jobs:
           }" ${{ env.PATH_PROJECT_FILE }} <<'EOF'
           
             <PropertyGroup>
-              <AssemblyName>mcpsqlserver-preview-202508b</AssemblyName>
+              <AssemblyName>mcpsqlserver-preview-202508c</AssemblyName>
               <PackAsTool>true</PackAsTool>
               <ToolCommandName>mcpsqlserver</ToolCommandName>
               <Authors>Renato Groffe</Authors>
@@ -83,10 +83,12 @@ jobs:
               </Description>
             </PropertyGroup>
 
+            <PropertyGroup>
+              <PackageReadmeFile>README.md</PackageReadmeFile>
+            </PropertyGroup>
+
             <ItemGroup>
-              <None Update="README.md">
-                <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-              </None>
+              <None Include="README.md" Pack="true" PackagePath="\" />
             </ItemGroup>
           
           EOF
