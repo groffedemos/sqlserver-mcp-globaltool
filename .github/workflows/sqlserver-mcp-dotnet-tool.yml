@@ -72,7 +72,7 @@ jobs:
           }" ${{ env.PATH_PROJECT_FILE }} <<'EOF'
           
             <PropertyGroup>
-              <AssemblyName>mcpsqlserver-preview-202508a</AssemblyName>
+              <AssemblyName>mcpsqlserver-preview-202508b</AssemblyName>
               <PackAsTool>true</PackAsTool>
               <ToolCommandName>mcpsqlserver</ToolCommandName>
               <Authors>Renato Groffe</Authors>
